@@ -1,5 +1,8 @@
 package com.lfh.seine.web.user.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.lfh.seine.common.base.BasePage;
 import com.lfh.seine.common.result.CommonResult;
 import com.lfh.seine.common.validation.ValidationSave;
 import com.lfh.seine.common.validation.ValidationUpdate;
@@ -34,8 +37,11 @@ public class UserController {
     }
 
     @PostMapping("/listUser")
-    public CommonResult<List<SysUser>> listUser() {
-        return CommonResult.success(sysUserService.list());
+    public CommonResult<PageInfo<SysUser>> listUser(@RequestBody BasePage basePage) {
+        PageHelper.startPage(basePage.getPageNum(), basePage.getPageSize());
+        List<SysUser> list = sysUserService.list();
+        PageInfo<SysUser> pageInfo = new PageInfo<>(list);
+        return CommonResult.success(pageInfo);
     }
 
     @PostMapping("/saveUser")
