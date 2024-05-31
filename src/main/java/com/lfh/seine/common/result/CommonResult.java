@@ -31,4 +31,13 @@ public class CommonResult<T> {
         return new CommonResult<>(CommonResultEnum.SUCCESS.getCode(), CommonResultEnum.SUCCESS.getMsg(), data);
     }
 
+    /**
+     * 失败
+     * @param data 失败
+     * @return 失败
+     * @param <T> 数据类型
+     */
+    public static <T> CommonResult<T> fail(T data) {
+        return new CommonResult<>(CommonResultEnum.FAIL.getCode(), CommonResultEnum.FAIL.getMsg(), data);
+    }
 }

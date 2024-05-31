@@ -12,7 +12,9 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum CommonResultEnum {
-    SUCCESS(200, "success");
+    SUCCESS(200, "success"),
+    FAIL(500, "fail")
+    ;
 
     private final Integer code;
     private final String msg;
