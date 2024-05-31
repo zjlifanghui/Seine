@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: Seine
+
+server:
+  port: 8081
