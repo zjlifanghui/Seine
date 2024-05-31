@@ -3,9 +3,12 @@ package com.lfh.seine.web.user.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.lfh.seine.common.base.BaseEntity;
+import com.lfh.seine.common.validation.ValidationSave;
+import com.lfh.seine.common.validation.ValidationUpdate;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
-import java.time.LocalDateTime;
+import lombok.EqualsAndHashCode;
 
 /**
  * @Author: lfh
@@ -13,22 +16,27 @@ import java.time.LocalDateTime;
  * @Description: 用户实体类
  * @Version: 1.0
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("sys_user")
-public class SysUser {
+public class SysUser extends BaseEntity {
     @TableId(type = IdType.ASSIGN_ID)
+    @NotNull(message = "用户id不能为空！", groups = ValidationUpdate.class)
     private Long userId;
+
     private String userName;
+
     private String nickName;
+
     private String avatarUrl;
+
     private String password;
+
     private String email;
+
     private String mobile;
+
     private Long isAdmin;
+
     private Long userStatus;
-    private Long createUserId;
-    private LocalDateTime createTime;
-    private Long updateUserId;
-    private LocalDateTime updateTime;
-    private Long isDeleted;
 }

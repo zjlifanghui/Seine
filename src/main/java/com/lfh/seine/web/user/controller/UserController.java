@@ -1,13 +1,15 @@
 package com.lfh.seine.web.user.controller;
 
 import com.lfh.seine.common.result.CommonResult;
+import com.lfh.seine.common.validation.ValidationSave;
+import com.lfh.seine.common.validation.ValidationUpdate;
 import com.lfh.seine.web.user.entity.SysUser;
 import com.lfh.seine.web.user.service.SysUserService;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Author: lfh
@@ -29,5 +31,20 @@ public class UserController {
     @GetMapping("/getUser")
     public CommonResult<SysUser> getUser(@RequestParam Long userId) {
         return CommonResult.success(sysUserService.getById(userId));
+    }
+
+    @PostMapping("/listUser")
+    public CommonResult<List<SysUser>> listUser() {
+        return CommonResult.success(sysUserService.list());
+    }
+
+    @PostMapping("/saveUser")
+    public CommonResult<?> saveUser(@RequestBody @Validated(ValidationSave.class) SysUser sysUser) {
+        return CommonResult.success(sysUserService.save(sysUser));
+    }
+
+    @PostMapping("/updateUser")
+    public CommonResult<?> updateUser(@RequestBody @Validated(ValidationUpdate.class) SysUser sysUser) {
+        return CommonResult.success(sysUserService.updateById(sysUser));
     }
 }

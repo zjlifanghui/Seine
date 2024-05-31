@@ -9,3 +9,6 @@ spring:
 
 server:
   port: 8081
+
+mybatis-plus:
+  config-location:
