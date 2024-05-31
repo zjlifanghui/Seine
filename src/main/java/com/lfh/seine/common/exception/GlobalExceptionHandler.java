@@ -2,6 +2,7 @@ package com.lfh.seine.common.exception;
 
 import com.lfh.seine.common.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,4 +30,11 @@ public class GlobalExceptionHandler {
         ObjectError objectError = e.getBindingResult().getAllErrors().get(0);
         return CommonResult.fail(objectError.getDefaultMessage());
     }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public CommonResult<?> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+        log.error("数据库字段约束异常(Exception)", e);
+        return CommonResult.fail(e.getCause().getMessage());
+    }
+
 }

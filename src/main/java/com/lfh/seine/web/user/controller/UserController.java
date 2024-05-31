@@ -47,4 +47,9 @@ public class UserController {
     public CommonResult<?> updateUser(@RequestBody @Validated(ValidationUpdate.class) SysUser sysUser) {
         return CommonResult.success(sysUserService.updateById(sysUser));
     }
+
+    @GetMapping("/removeUser")
+    public CommonResult<?> removeUser(@RequestParam Long userId) {
+        return CommonResult.success(sysUserService.removeById(userId));
+    }
 }

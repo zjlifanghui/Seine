@@ -11,4 +11,8 @@ server:
   port: 8081
 
 mybatis-plus:
-  config-location:
+  global-config:
+    db-config:
+      logic-delete-field: isDeleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
