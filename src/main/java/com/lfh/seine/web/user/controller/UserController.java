@@ -1,9 +1,12 @@
 package com.lfh.seine.web.user.controller;
 
 import com.lfh.seine.common.result.CommonResult;
-import com.lfh.seine.web.user.entity.UserEntity;
+import com.lfh.seine.web.user.entity.SysUser;
+import com.lfh.seine.web.user.service.SysUserService;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    @Resource
+    private SysUserService sysUserService;
 
     /**
      * 获取用户信息
@@ -22,10 +27,7 @@ public class UserController {
      * @return 用户信息
      */
     @GetMapping("/getUser")
-    public CommonResult<UserEntity> getUser() {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(1L);
-        userEntity.setName("lfh");
-        return CommonResult.success(userEntity);
+    public CommonResult<SysUser> getUser(@RequestParam Long userId) {
+        return CommonResult.success(sysUserService.getById(userId));
     }
 }
