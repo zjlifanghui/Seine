@@ -1,4 +1,4 @@
-package com.lfh.seine.web.user.controller;
+package com.lfh.seine.web.sys.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -6,8 +6,9 @@ import com.lfh.seine.common.base.BasePage;
 import com.lfh.seine.common.result.CommonResult;
 import com.lfh.seine.common.validation.ValidationSave;
 import com.lfh.seine.common.validation.ValidationUpdate;
-import com.lfh.seine.web.user.entity.SysUser;
-import com.lfh.seine.web.user.service.SysUserService;
+import com.lfh.seine.web.sys.entity.SysUser;
+import com.lfh.seine.web.sys.mode.dto.SysUserDTO;
+import com.lfh.seine.web.sys.service.SysUserService;
 import jakarta.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -44,9 +45,10 @@ public class UserController {
         return CommonResult.success(pageInfo);
     }
 
-    @PostMapping("/saveUser")
-    public CommonResult<?> saveUser(@RequestBody @Validated(ValidationSave.class) SysUser sysUser) {
-        return CommonResult.success(sysUserService.save(sysUser));
+    @PostMapping("/createAccount")
+    public CommonResult<?> createAccount(@RequestBody @Validated(ValidationSave.class) SysUserDTO sysUserDTO) {
+        sysUserService.createAccount(sysUserDTO);
+        return CommonResult.success();
     }
 
     @PostMapping("/updateUser")
@@ -58,4 +60,10 @@ public class UserController {
     public CommonResult<?> removeUser(@RequestParam Long userId) {
         return CommonResult.success(sysUserService.removeById(userId));
     }
+
+    @GetMapping("/getSysUserByUserName")
+    public CommonResult<?> getSysUserByUserName(@RequestParam String userName) {
+        return CommonResult.success(sysUserService.getSysUserByUserName(userName));
+    }
+
 }

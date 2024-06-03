@@ -1,8 +1,9 @@
-package com.lfh.seine.web.user.mapper;
+package com.lfh.seine.web.sys.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lfh.seine.web.user.entity.SysUser;
+import com.lfh.seine.web.sys.entity.SysUser;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @Author: lfh
@@ -12,4 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
+
+    SysUser getSysUserByUserName(@Param("userName") String userName);
 }

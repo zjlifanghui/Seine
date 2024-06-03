@@ -1,7 +1,8 @@
-package com.lfh.seine.web.user.service;
+package com.lfh.seine.web.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lfh.seine.web.user.entity.SysUser;
+import com.lfh.seine.web.sys.entity.SysUser;
+import com.lfh.seine.web.sys.mode.dto.SysUserDTO;
 
 /**
  * @Author: lfh
@@ -11,4 +12,7 @@ import com.lfh.seine.web.user.entity.SysUser;
  */
 public interface SysUserService extends IService<SysUser> {
 
+    SysUser getSysUserByUserName(String userName);
+
+    void createAccount(SysUserDTO sysUserDTO);
 }
