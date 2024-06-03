@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.lfh.seine.common.base.BaseEntity;
-import com.lfh.seine.common.validation.ValidationSave;
 import com.lfh.seine.common.validation.ValidationUpdate;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
