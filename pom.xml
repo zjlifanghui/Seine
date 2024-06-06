@@ -92,7 +92,7 @@
                 <configuration>
                     <proguardVersion>${proguard.version}</proguardVersion>
                     <injar>${project.build.finalName}.jar</injar>
-                    <outjar>${project.build.finalName}_proguard.jar</outjar>
+                    <outjar>${project.build.finalName}.jar</outjar>
                     <obfuscate>true</obfuscate>
                     <options>
                         <option>-dontshrink</option>
@@ -146,6 +146,13 @@
 
                         <option>-dontwarn com.fasterxml.jackson.databind.**</option>
                         <option>-dontwarn com.fasterxml.jackson.**</option>
+                        <!--保存包名-->
+                        <option>-keeppackagenames</option>
+                        <!--保存实体类不变-->
+                        <option>-keep class com.lfh.seine.web.sys.entity.** { *; }</option>
+                        <option>-keep class com.lfh.seine.web.sys.controller.** { *; }</option>
+                        <option>-keep class com.lfh.seine.web.sys.mode.** { *; }</option>
+                        <option>-keep class com.lfh.seine.common.** { *; }</option>
 
                     </options>
                     <injarNotExistsSkip>true</injarNotExistsSkip>
